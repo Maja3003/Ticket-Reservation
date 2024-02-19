@@ -1,0 +1,19 @@
+@startuml
+actor Klient
+participant "System Rezerwacji" as SystemRezerwacji
+participant "Rezerwacja" as Rezerwacja
+participant "Bilet" as Bilet
+participant "Faktura" as Faktura
+
+Klient -> SystemRezerwacji: Wyszukaj Spektakle
+SystemRezerwacji -> Klient: Lista spektakli
+Klient -> SystemRezerwacji: Rezerwuj Bilety
+SystemRezerwacji -> Klient: Prośba o dane klienta
+Klient -> Rezerwacja: Dane Klienta
+Klient -> Rezerwacja: Wybierz Miejsca
+Rezerwacja -> Bilet: Stwórz Bilet
+Bilet -> Rezerwacja: Potwierdzenie Biletu
+Rezerwacja -> Faktura: Stwórz Fakturę
+Faktura -> Klient: Faktura za bilet
+@enduml
+

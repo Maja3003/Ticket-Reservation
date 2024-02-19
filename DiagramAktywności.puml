@@ -1,0 +1,42 @@
+@startuml
+start
+
+:Klient wyszukuje spektakl;
+if (Czy znaleziono spektakl?) then (tak)
+:System wyświetla listę znaleznionych spektakli;
+else (nie)
+:System informuje o braku spektakli;
+stop
+endif
+
+:Klient rezerwuje bilety;
+
+:System prosi o dane klienta;
+
+:Klient podaje swoje dane;
+
+if (Czy dane są prawidłowe?) then (tak)
+:Klient wybiera miejsca;
+    if (Czy miejsce jest dostępne?) then (tak)
+    :System Rezerwacji tworzy bilety;
+        if (Czy ulgowe bilety?) then (tak)
+        :System Rezerwacji oblicza cenę ulgowych biletów;
+        else (nie)
+        :System Rezerwacji oblicza cenę normalnych biletów;
+        endif
+    else (nie)
+    :System wyświetla informację o braku miejsc;
+    stop
+endif
+else (nie)
+:System informuje o niepoprawnych danych;
+stop
+endif
+
+:Rezerwacja tworzy bilet;
+
+:Rezerwacja tworzy fakturę;
+
+:Faktura jest wysyłana do klienta;
+stop
+@enduml

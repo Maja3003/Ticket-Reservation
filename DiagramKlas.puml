@@ -1,0 +1,59 @@
+@startuml
+
+class Klient 
+{
+    - imię : string
+    - nazwisko : string
+    - email : string
+}
+
+class Spektakl
+{
+    - tytuł : string
+    - data : string
+    - godzina : string
+    - cena : float
+}
+
+abstract class Bilet {
+  - numerBiletu: string
+  - przypisaneMiejsce: string
+  + obliczCene(): float
+}
+
+class BiletNormalny {
+  + obliczCene(): float
+}
+
+class BiletUlgowy {
+  + obliczCene(): float
+}
+
+class Rezerwacja
+{
+    - DataRezerwacji : string
+    - PrzypisaneBilety: int
+}
+
+class Faktura
+{
+    - NumerFaktury : int  
+    - DaneKlienta : Klient
+    - DaneRezerwacji : Rezerwacja
+}
+
+class SystemRezerwacji
+{
+    + WyszukajSpektakle()
+    + RezerwujBilety()
+}
+
+Klient --> SystemRezerwacji
+Rezerwacja --> Bilet
+Rezerwacja --> Faktura
+SystemRezerwacji --> Rezerwacja
+Bilet <|-- BiletNormalny
+Bilet <|-- BiletUlgowy
+
+
+@enduml

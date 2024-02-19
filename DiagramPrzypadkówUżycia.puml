@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+
+actor Klient as "Klient"
+actor "System Rezerwacji" as SystemRezerwacji
+
+rectangle "Rezerwacja" as Rezerwacja {
+  usecase "Rezerwuj Bilety" as RezerwujBilety
+  usecase "Potwierdzenie Biletu" as PotwierdzenieBiletu
+}
+
+rectangle "Bilet" as Bilet {
+  usecase "Stwórz Bilet" as StworzBilet
+}
+
+rectangle "Faktura" as Faktura {
+  usecase "Stwórz Fakturę" as StworzFakture
+}
+
+Klient --> SystemRezerwacji : "Rezerwuj Bilety"
+Klient --> SystemRezerwacji : "Wyszukaj Spektakle"
+RezerwujBilety --> StworzBilet : <<include>>
+StworzBilet --> PotwierdzenieBiletu : <<include>>
+RezerwujBilety --> StworzFakture : <<include>>
+StworzFakture --> Klient : "Faktura za bilet"
+SystemRezerwacji --> Klient : "Lista spektakli"
+SystemRezerwacji --> Klient : "Prośba o dane klienta"
+Klient --> RezerwujBilety : "Podaj swoje dane"
+Klient --> RezerwujBilety : "Wybierz Miejsca"
+@enduml
